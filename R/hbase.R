@@ -69,18 +69,7 @@ hbaseGet = function(table, keys, family, column,
 
   out@s = .jnew("Rpkg.hbase.HBGet")
 
-  nFamily = nFamilyColumn = 0
-  if (!missing(family) & missing(column))
-    nFamily = length(family)
-  else if (!missing(family) & !missing(column))
-    nFamilyColumn = length(family)
-  else if (missing(family) & !missing(column)) {
-    nFamilyColumn = length(grep(":", column, fixed=TRUE))
-    nFamily = length(column) - nFamilyColumn
-  }
-
-  .jcall(out@s, "V", "initGet", table@jobj, .jarray(keys),
-         as.integer(nFamily), as.integer(nFamilyColumn))
+  .jcall(out@s, "V", "initGet", table@jobj, .jarray(keys))
 
   out@restrict = restrict(out, out@family)
   return(out)

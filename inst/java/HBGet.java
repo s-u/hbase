@@ -8,20 +8,18 @@ import org.apache.hadoop.hbase.client.HTable;
 
 public class HBGet extends HBResult {
   String[] k;
-  byte[][] family;
-  byte[][] familyColumn;
-  byte[][] column;
-  int keyIndex = 0;
-  int familyIndex = 0;
-  int familyColumnIndex = 0;
+  List<byte[]> family;
+  List<byte[]> familyColumn;
+  List<byte[]> column;
 
-  // Initialize "String[] k" and "HTable t"
-  public void initGet(HTable table, String[] keys, int nFamily, int nFamilyColumn) {
+  int keyIndex = 0;
+
+  public void initGet(HTable table, String[] keys) {
     k = keys;
     t = table;
-    family = new byte[nFamily][];
-    familyColumn = new byte[nFamilyColumn][];
-    column = new byte[nFamilyColumn][];
+    family = new ArrayList<byte[]>();
+    familyColumn = new ArrayList<byte[]>();
+    column = new ArrayList<byte[]>();
   }
 
   private Result[] nextResults(int numElements) throws java.io.IOException{
@@ -32,11 +30,11 @@ public class HBGet extends HBResult {
       Get g = new Get(b);
       if (familyIndex > 0) {
         for (int j = 0; j < familyIndex; j++)
-          g.addFamily(family[j]);
+          g.addFamily(family.get(j));
       }
       if (familyColumnIndex > 0) {
         for (int j = 0; j < familyColumnIndex; j++)
-          g.addColumn(familyColumn[j], column[j]);
+          g.addColumn(familyColumn.get(j), column.get(j));
       }
       res[i] = t.get(g);
       keyIndex++;
@@ -45,13 +43,13 @@ public class HBGet extends HBResult {
   }
 
   public void restrict(byte[] family_in) {
-    family[familyIndex] = family_in;
+    family.get(family_in);
     familyIndex++;
   }
 
   public void restrict(byte[] family_in, byte[] column_in) {
-    familyColumn[familyColumnIndex] = family_in;
-    column[familyColumnIndex] = column_in;
+    familyColumn.add(family_in);
+    column.add(column_in);
     familyColumnIndex++;
   }
 

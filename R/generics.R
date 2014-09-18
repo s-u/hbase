@@ -44,7 +44,7 @@ setMethod("fetch", signature(object = "hbaseResult"),
       colIndicator = as.integer(colIndicator != 0)
       res = .jcall(object@s, "[S", "fetch", as.integer(max.rows), .jarray(colIndicator))
     }
-    if(!length(res)) return(res)
+    if(!length(res)) return(NULL)
     colNames = c("row", "family", "column", "timestamp", "type", "version", "value")
     matrix(res, ncol=sum(colIndicator), dimnames=list(NULL, colNames[colIndicator == 1]))
   }
