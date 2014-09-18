@@ -16,7 +16,7 @@ hbaseScan = function(table, start, end, family, column,
   if (missing(family)) {
     if (!missing(column))
       warning("Ignoring column input due to missing family input.")
-    family = NULL
+    family = NA_character_
   }
   else if (!missing(column)) {
     if (length(column) != length(family))
@@ -31,6 +31,7 @@ hbaseScan = function(table, start, end, family, column,
     out@end = end
 
   out@s = .jnew("Rpkg.hbase.HBScan")
+
   if (!missing(end))
     .jcall(out@s, "V", "initScan", table@jobj, charToRaw(start), charToRaw(end))
   else if (!missing(start))
@@ -54,6 +55,18 @@ hbaseGet = function(table, keys, family, column,
             cacheSize = as.integer(cacheSize),
             sig = "Lorg/apache/hadoop/hbase/client/Scan;")
 
+  if (missing(family)) {
+    if (!missing(column))
+      warning("Ignoring column input due to missing family input.")
+    family = NA_character_
+  }
+  else if (!missing(column)) {
+    if (length(column) != length(family))
+      stop("Family and column must have the same length")
+    family = paste0(family, ":", column)
+  }
+  out@restrict = family
+
   out@s = .jnew("Rpkg.hbase.HBGet")
 
   nFamily = nFamilyColumn = 0
@@ -66,15 +79,10 @@ hbaseGet = function(table, keys, family, column,
     nFamily = length(column) - nFamilyColumn
   }
 
-  if (missing(family))
-    family = NULL
-  if (missing(column))
-    column = NULL
-
   .jcall(out@s, "V", "initGet", table@jobj, .jarray(keys),
          as.integer(nFamily), as.integer(nFamilyColumn))
 
-  out@restrict = restrict(out, family, column)
+  out@restrict = restrict(out, out@family)
   return(out)
 }
 

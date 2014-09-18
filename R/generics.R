@@ -22,31 +22,15 @@ setMethod("show", signature(object = "hbaseGet"),
 )
 
 setMethod("restrict", signature(object = "hbaseResult"),
-  function(object, family, column) {
-    family = strsplit(as.character(family), ":", TRUE)
-
-
-    if (!is.null(family)) {
-      if (is.null(column)) {
-        for(i in 1:length(family))
-          .jcall(object@s, "V", "restrict", charToRaw(family[[i]]))
-        return(family)
-      } else {
-        if (length(family) != length(column))
-          stop("family and column, if provided, must be character vectors of the same length")
-        for(i in 1:length(family))
-          .jcall(object@s, "V", "restrict", charToRaw(family[[i]]), charToRaw(column[[i]]))
-        return(paste0(family, ":", column))
-      }
-    } else if (!is.null(column)) {
-      for (o in strsplit(as.character(column), ":", TRUE)) {
-        if (is.null(o[[2L]]))
-          .jcall(object@s, "V", "restrict", charToRaw(o[[1L]]))
-        else
-          .jcall(object@s, "V", "restrict", charToRaw(o[[1L]]), charToRaw(o[[2L]]))
-      }
-      return (column)
-    } else return(NA_character_)
+  function(object, family) {
+    if (is.na(family)) return(NA_character_)
+    flist = strsplit(as.character(family), ":", TRUE)
+    for (f in flist) {
+      if (length(f) == 1)
+        .jcall(object@s, "V", "restrict", charToRaw(f[[1L]]))
+      else if (length(f) == 2)
+        .jcall(object@s, "V", "restrict", charToRaw(o[[1L]]), charToRaw(o[[2L]]))
+    }
   }
 )
 
