@@ -48,6 +48,7 @@ Taylor Arnold, Simon Urbanek
   hbasePut(table, row=c("smithjonathan","smithjonathan")
            family = c("e","e"), column = c("age", "gender"),
            value = c("29", "male"))
+
 }
 }
 \keyword{ interface }

@@ -23,6 +23,9 @@ setMethod("show", signature(object = "hbaseGet"),
 
 setMethod("restrict", signature(object = "hbaseResult"),
   function(object, family, column) {
+    family = strsplit(as.character(family), ":", TRUE)
+
+
     if (!is.null(family)) {
       if (is.null(column)) {
         for(i in 1:length(family))
@@ -62,3 +65,16 @@ setMethod("fetch", signature(object = "hbaseResult"),
     matrix(res, ncol=sum(colIndicator), dimnames=list(NULL, colNames[colIndicator == 1]))
   }
 )
+
+setMethod("fetch", signature(object = "hbaseGet"),
+  function(object, max.rows = object@cacheSize, colIndicator = rep(1L,7)) {
+    callNextMethod()
+  }
+)
+
+setMethod("fetch", signature(object = "hbaseScan"),
+  function(object, max.rows = object@cacheSize, colIndicator = rep(1L,7)) {
+    callNextMethod()
+  }
+)
+

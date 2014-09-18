@@ -25,7 +25,9 @@ rather than directly calling the \code{new} function.
 }
 \section{Methods}{
   \describe{
-    \item{show}{\code{signature(object = "hbaseGet")}: ... }
+    \item{show}{\code{signature(object = "hbaseGet")}: Prints simple description of the object.}
+    \item{fetch}{\code{signature(object = "hbaseGet")}: Fetch the next set of results.
+    See \code{\link{fetch}} for more details}
 	 }
 }
 \author{

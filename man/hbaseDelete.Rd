@@ -49,6 +49,7 @@ Taylor Arnold, Simon Urbanek
   table = hbaseTable("household_demographics")
   hbaseDelete(table, row=c("smithjonathan","smithjonathan")
            family = c("e","e"), column = c("age", "gender"))
+
 }
 
 }

@@ -39,12 +39,12 @@ Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2014-09-18\cr
 License: \tab MIT | file LICENSE \cr
-Depends: \tab methods\cr
+Depends: \tab rJava\cr
 Imports: \tab methods\cr
 }
 }
 \author{
-Taylor Arnold <taylor.arnold@aya.yale.edu>, Simon Urbanek <simon.urbanek@r-project.org>
+Taylor Arnold, Simon Urbanek
 
 Maintainer: Taylor Arnold <taylor.arnold@aya.yale.edu>
 }
@@ -60,6 +60,7 @@ Maintainer: Taylor Arnold <taylor.arnold@aya.yale.edu>
   scannner = hbaseScan(table, start="doe", end="smith",
                        family = c("e:income", "g:num_adults"))
   fetch(scannner, max.row=10)
+
 }
 
 }

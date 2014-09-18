@@ -70,6 +70,7 @@ Taylor Arnold, Simon Urbanek
   table = hbaseTable("household_demographics")
   scannner = hbaseGet(table, keys = c("smithjonathan", "doejohn"))
   fetch(scannner, max.row=2L)
+
 }
 
 }

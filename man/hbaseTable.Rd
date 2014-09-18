@@ -39,6 +39,7 @@ Taylor Arnold, Simon Urbanek
   scannner = hbaseScan(table, start="doe", end="smith",
                        family = c("e:income", "g:num_adults"))
   fetch(scannner, max.row=10)
+
 }
 
 }
