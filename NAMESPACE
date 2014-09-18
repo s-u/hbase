@@ -1,0 +1,15 @@
+exportPattern("*.*")
+import(rJava)
+
+importFrom("methods", show)
+
+exportMethods(
+    "fetch",
+    "restrict",
+    "show"
+)
+exportClasses(
+    "hbaseTable",
+     "hbaseScan",
+     "hbaseGet"
+)

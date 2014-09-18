@@ -1,4 +1,4 @@
 hbase
 =====
 
-R interface to hbase
+testing hbase functionality
