@@ -9,6 +9,6 @@ exportMethods(
 )
 exportClasses(
     "hbaseTable",
-     "hbaseScan",
-     "hbaseGet"
+    "hbaseScan",
+    "hbaseGet"
 )

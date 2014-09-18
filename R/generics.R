@@ -1,4 +1,3 @@
-setGeneric("print")
 setGeneric("show")
 setGeneric("restrict", function(object, family, column) standardGeneric("restrict"))
 setGeneric("fetch", function(object, max.rows = object@cacheSize, colIndicator = rep(1L,7)) standardGeneric("fetch"))

@@ -1,0 +1,10 @@
+Package: hbase
+Title: Direct HBase interface
+Version: 1.0-0
+Author: Taylor Arnold <taylor.arnold@aya.yale.edu>, Simon Urbanek <simon.urbanek@r-project.org>
+Maintainer: Taylor Arnold <taylor.arnold@aya.yale.edu>
+Description: Direct HBase interface, using a connection through rJava, which allows for
+  batch get calls, scan calls, batch put operations, and batch delete operations.
+Depends: rJava
+Imports: methods
+License: MIT | file LICENSE
