@@ -1,9 +1,0 @@
-Package: hbase
-Title: Direct HBase interface
-Version: 1.0-0
-Author: Taylor Arnold <taylor.arnold@research.att.com>, Simon Urbanek <simon.urbanek@r-project.org>
-Maintainer: Taylor Arnold <taylor.arnold@research.att.com>
-Description: Direct HBase interface
-Depends: rJava
-Imports: methods
-License: MIT | file LICENSE
