@@ -5,4 +5,5 @@ Author: Taylor Arnold <taylor.arnold@research.att.com>, Simon Urbanek <simon.urb
 Maintainer: Taylor Arnold <taylor.arnold@research.att.com>
 Description: Direct HBase interface
 Depends: rJava
-License: MIT
+Imports: methods
+License: MIT | file LICENSE
