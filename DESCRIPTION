@@ -1,6 +1,6 @@
 Package: hbase
 Title: Direct HBase interface
-Version: 1.0-0
+Version: 0.1-0
 Author: Taylor Arnold <taylor.arnold@aya.yale.edu>, Simon Urbanek <simon.urbanek@r-project.org>
 Maintainer: Taylor Arnold <taylor.arnold@aya.yale.edu>
 Description: Direct HBase interface, using a connection through rJava, which allows for
