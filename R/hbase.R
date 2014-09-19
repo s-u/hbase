@@ -89,6 +89,8 @@ hbasePut = function(table, row, family, column, value) {
 
   .jcall(obj, "V", "loadData", .jarray(row), .jarray(family), .jarray(column), .jarray(as.character(value)))
   .jcall(obj, "V", "putData", table@jobj)
+
+  .jcall(obj, "V", "flush")
 }
 
 hbaseDelete = function(table, row, family, column, allValues = TRUE) {
