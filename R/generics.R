@@ -23,13 +23,13 @@ setMethod("show", signature(object = "hbaseGet"),
 
 setMethod("restrict", signature(object = "hbaseResult"),
   function(object, family) {
-    if (is.na(family)) return(NA_character_)
+    if (any(is.na(family))) return(NA_character_)
     flist = strsplit(as.character(family), ":", TRUE)
     for (f in flist) {
       if (length(f) == 1)
         .jcall(object@s, "V", "restrict", charToRaw(f[[1L]]))
       else if (length(f) == 2)
-        .jcall(object@s, "V", "restrict", charToRaw(o[[1L]]), charToRaw(o[[2L]]))
+        .jcall(object@s, "V", "restrict", charToRaw(f[[1L]]), charToRaw(f[[2L]]))
     }
   }
 )

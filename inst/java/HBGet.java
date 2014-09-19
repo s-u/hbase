@@ -1,5 +1,7 @@
 package Rpkg.hbase;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.lang.Math;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.Cell;
@@ -28,12 +30,12 @@ public class HBGet extends HBResult {
     for (int i = 0; i < n; i++) {
       byte[] b = k[keyIndex].getBytes();
       Get g = new Get(b);
-      if (familyIndex > 0) {
-        for (int j = 0; j < familyIndex; j++)
+      if (family.size() > 0) {
+        for (int j = 0; j < family.size(); j++)
           g.addFamily(family.get(j));
       }
-      if (familyColumnIndex > 0) {
-        for (int j = 0; j < familyColumnIndex; j++)
+      if (familyColumn.size() > 0) {
+        for (int j = 0; j < familyColumn.size(); j++)
           g.addColumn(familyColumn.get(j), column.get(j));
       }
       res[i] = t.get(g);
@@ -43,14 +45,12 @@ public class HBGet extends HBResult {
   }
 
   public void restrict(byte[] family_in) {
-    family.get(family_in);
-    familyIndex++;
+    family.add(family_in);
   }
 
   public void restrict(byte[] family_in, byte[] column_in) {
     familyColumn.add(family_in);
     column.add(column_in);
-    familyColumnIndex++;
   }
 
   public String[] fetch(int numElements, int[] value_ind) throws java.io.IOException {

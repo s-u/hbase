@@ -39,7 +39,7 @@ hbaseScan = function(table, start, end, family, column,
   else
     .jcall(out@s, "V", "initScan", table@jobj)
 
-  restrict(out, out@family)
+  restrict(out, out@restrict)
   return(out)
 }
 
@@ -71,7 +71,7 @@ hbaseGet = function(table, keys, family, column,
 
   .jcall(out@s, "V", "initGet", table@jobj, .jarray(keys))
 
-  out@restrict = restrict(out, out@family)
+  restrict(out, out@restrict)
   return(out)
 }
 
