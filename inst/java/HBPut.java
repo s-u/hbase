@@ -5,6 +5,7 @@ import org.apache.hadoop.hbase.client.Put;
 import java.util.List;
 import java.util.ArrayList;
 import org.apache.hadoop.hbase.client.RetriesExhaustedWithDetailsException;
+import java.lang.System;
 
 public class HBPut {
   List<Put> puts;
@@ -24,4 +25,8 @@ public class HBPut {
     table.put(puts);
   }
 
+  public void flush() {
+    puts = null;
+    System.gc();
+  }
 }
