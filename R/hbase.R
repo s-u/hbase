@@ -43,6 +43,40 @@ hbaseScan = function(table, start, end, family, column,
   return(out)
 }
 
+hbaseScan2 = function(table, start, end, family, column,
+                     cacheSize = 10L) {
+  if (is.character(table))
+    table = hbaseTable(table)
+  if (!inherits(table, "hbaseTable"))
+    stop("invalid table object")
+  out = new("hbaseScan", table = table, cacheSize = as.integer(cacheSize),
+            sig = "Lorg/apache/hadoop/hbase/client/Scan;")
+
+  if (missing(family)) {
+    if (!missing(column))
+      warning("Ignoring column input due to missing family input.")
+    family = NA_character_
+  }
+  else if (!missing(column)) {
+    if (length(column) != length(family))
+      stop("Family and column must have the same length")
+    family = paste0(family, ":", column)
+  }
+  out@restrict = family
+
+  if (!missing(start))
+    out@start = start
+  if (!missing(end))
+    out@end = end
+
+  out@s = .jnew("Rpkg.hbase.HBScan2")
+
+  .jcall(out@s, "V", "initScan", table@jobj, .jarray(start), .jarray(end))
+
+  restrict(out, out@restrict)
+  return(out)
+}
+
 hbaseGet = function(table, keys, family, column,
                      cacheSize = 10L) {
   if (is.character(table))
@@ -110,4 +144,3 @@ hbaseDelete = function(table, row, family, column, allValues = TRUE) {
 
   .jcall(obj, "V", "putDelete", table@jobj)
 }
-

@@ -21,6 +21,17 @@ setClass("hbaseScan",
           contains = "hbaseResult"
           )
 
+setClass("hbaseScan2",
+          representation = representation(table = "hbaseTable",
+                                          start = "character",
+                                          end = "character",
+                                          restrict = "character",
+                                          s = "jobjRef",
+                                          cacheSize = "integer",
+                                          sig = "character"),
+          contains = "hbaseResult"
+          )
+
 setClass("hbaseGet",
           representation = representation(table = "hbaseTable",
                                           keys = "character",

@@ -62,3 +62,8 @@ setMethod("fetch", signature(object = "hbaseScan"),
   }
 )
 
+setMethod("fetch", signature(object = "hbaseScan2"),
+  function(object, max.rows = object@cacheSize, colIndicator = rep(1L,7)) {
+    callNextMethod()
+  }
+)

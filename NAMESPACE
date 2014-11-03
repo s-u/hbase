@@ -1,4 +1,4 @@
-export("hbaseTable", "hbaseScan", "hbaseGet", "hbasePut", "hbaseDelete")
+export("hbaseTable", "hbaseScan", "hbaseScan2", "hbaseGet", "hbasePut", "hbaseDelete")
 import(rJava)
 
 importFrom("methods", show)
@@ -10,5 +10,6 @@ exportMethods(
 exportClasses(
     "hbaseTable",
     "hbaseScan",
+    "hbaseScan2",
     "hbaseGet"
 )

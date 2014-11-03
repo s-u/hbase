@@ -26,7 +26,7 @@ volatiles <- new.env(parent=emptyenv())
     cfg=.jcall("org.apache.hadoop.hbase.HBaseConfiguration", "Lorg/apache/hadoop/conf/Configuration;", "create")
     if (is.jnull(cfg))
       stop("cannot load HBase configuration")
-    volatiles$cfg <- cfg
+  volatiles$cfg <- cfg
   }
   volatiles$cfg
 }
